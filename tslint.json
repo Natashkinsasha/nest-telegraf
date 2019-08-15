@@ -1,0 +1,82 @@
+{
+    "defaultSeverity": "error",
+    "rulesDirectory": [
+        "tslint-no-focused-test",
+        "tslint-consistent-codestyle",
+        "tslint-clean-code",
+        "tslint-misc-rules",
+        "tslint-plugin-prettier"
+    ],
+    "extends": [
+        "tslint:recommended",
+        "tslint-config-standard",
+        "tslint-sonarts",
+        "tslint-immutable",
+        "tslint-consistent-codestyle",
+        "tslint-clean-code",
+        "tslint-config-prettier"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "./node_modules/**",
+            "./build/**",
+            "./public/**",
+            "./config/**",
+            "./localization/**"
+        ]
+    },
+    "rules": {
+        "no-big-function": false,
+        "chai-vague-errors": false,
+        "import-name": false,
+        "max-union-size": [true, 4],
+        "export-name": false,
+        "prefer-type-cast": false,
+        "no-backbone-get-set-outside-model": false,
+        "no-relative-imports": false,
+        "readonly-array": [
+            true,
+            "ignore-rest-parameters"
+        ],
+        "no-let": true,
+        "no-focused-test": true,
+        "no-object-mutation": [
+            true,
+            {
+                "ignore-prefix": [
+                    "this."
+                ]
+            }
+        ],
+        "no-delete": true,
+        "no-console": true,
+        "no-loop-statement": true,
+        "no-collapsible-if": false,
+        "no-duplicate-string": false,
+        "max-line-length": false,
+        "no-shadowed-variable": false,
+        "object-literal-sort-keys": false,
+        "no-unused-expression": false,
+        "no-empty-interface": false,
+        "new-parens": false,
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "max-classes-per-file": false,
+        "prettier": true,
+        "object-shorthand-properties-first": false,
+        "await-promise": [
+            true,
+            "Bluebird"
+        ],
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore"
+        ],
+        "no-identical-functions": false,
+        "cognitive-complexity": false
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "nest-telegraf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev -r tsconfig-paths/register src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^6.5.3",
+    "@nestjs/core": "^6.5.3",
+    "@nestjs/platform-express": "^6.5.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.2",
+    "telegraf": "^3.32.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "ts-node-dev": "^1.0.0-pre.40",
+    "tsconfig-paths": "^3.8.0",
+    "typescript": "^3.5.3"
+  }
+}
