@@ -1,5 +1,5 @@
 import Telegraf, {ContextMessageUpdate, TelegrafOptions} from 'telegraf';
-import {Abstract, DynamicModule, Module, Type} from "@nestjs/common";
+import {Abstract, DynamicModule, ForwardReference, Module, Type} from "@nestjs/common";
 import {ModuleRef} from "@nestjs/core";
 import {handlers, properties} from "../decorator/BotController";
 import * as tt from "telegraf/typings/telegram-types";
@@ -14,25 +14,23 @@ export type BotOptions = {
 @Module({})
 export default class BotModule {
 
-    public static forRootAsync({useFactory, inject}: { useFactory: (...args: any[]) => Promise<{ token: string, options?: BotOptions, }> | { token: string, options?: BotOptions, }, inject?: Array<Type<any> | string | symbol> }) {
+    public static forRootAsync({useFactory, inject, imports}: { useFactory: (...args: any[]) => Promise<{ token: string, options?: BotOptions, }> | { token: string, options?: BotOptions, }, inject?: Array<Type<any> | string | symbol>, imports?: Array<Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference>; }): DynamicModule {
         const providers = [
             {
                 provide: Telegraf,
-                useFactory: async (ref: ModuleRef) => {
-                    const objects = (inject || []).map((item) => {
-                        return ref.get(item, {strict: false})
-                    });
+                useFactory: async (ref: ModuleRef, ...inject: Array<Type<any> | string | symbol>) => {
                     return Promise
                         .resolve()
-                        .then(() => useFactory(...objects))
+                        .then(() => useFactory(...inject))
                         .then(({token, options}) => {
                             return this.init(ref, token, options);
                         })
                 },
-                inject: [ModuleRef]
+                inject: [ModuleRef, ...(inject || [])]
             }
         ];
         return {
+            imports,
             module: BotModule,
             providers: providers,
             exports: providers,
