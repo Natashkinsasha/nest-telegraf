@@ -18,7 +18,9 @@
     "telegraf": "^3.32.0"
   },
   "devDependencies": {
+    "@types/localtunnel": "^1.9.0",
     "@types/node": "^12.7.2",
+    "localtunnel": "^1.9.2",
     "ts-node-dev": "^1.0.0-pre.40",
     "tsconfig-paths": "^3.8.0",
     "typescript": "^3.5.3"
