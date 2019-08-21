@@ -1,22 +1,30 @@
 {
-    "compilerOptions": {
-        "outDir": "build",
-        "module": "commonjs",
-        "target": "es2017",
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "strictNullChecks": true,
-        "inlineSourceMap": true,
-        "moduleResolution": "Node",
-        "removeComments": true,
-        "typeRoots": ["node_modules/@types", "typing"],
-        "baseUrl": ".",
-        "paths": {
-            "*": ["./typing/*"]
-        }
-    },
-    "exclude": ["node_modules", "build"]
+  "compilerOptions": {
+    "outDir": "build",
+    "module": "commonjs",
+    "target": "es2017",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "emitDecoratorMetadata": true,
+    "inlineSourceMap": true,
+    "moduleResolution": "Node",
+    "removeComments": true,
+    "declaration": true,
+    "typeRoots": [
+      "typing",
+      "node_modules/@types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./typing/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }

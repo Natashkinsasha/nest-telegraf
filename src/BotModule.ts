@@ -1,20 +1,12 @@
 import Telegraf, {ContextMessageUpdate, TelegrafOptions} from 'telegraf';
-import {Abstract, DynamicModule, ForwardReference, Module, Type} from "@nestjs/common";
+import {DynamicModule, ForwardReference, Module, Type} from "@nestjs/common";
 import {ModuleRef} from "@nestjs/core";
-import {handlers, properties} from "../decorator/BotController";
-import * as tt from "telegraf/typings/telegram-types";
-import {TlsOptions} from "tls";
-
-
-export type BotOptions = {
-    polling?: { timeout?: number, limit?: number, allowedUpdates?: tt.UpdateType[] },
-    webhook?: { webhookPath: string, tlsOptions: TlsOptions | null, port: number, host?: string }
-} & TelegrafOptions;
+import {handlers, properties} from "./decorator/BotController";
 
 @Module({})
 export default class BotModule {
 
-    public static forRootAsync({useFactory, inject, imports}: { useFactory: (...args: any[]) => Promise<{ token: string, options?: BotOptions, }> | { token: string, options?: BotOptions, }, inject?: Array<Type<any> | string | symbol>, imports?: Array<Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference>; }): DynamicModule {
+    public static forRootAsync({useFactory, inject, imports}: { useFactory: (...args: any[]) => Promise<{ token: string, options?: TelegrafOptions, }> | { token: string, options?: TelegrafOptions, }, inject?: Array<Type<any> | string | symbol>, imports?: Array<Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference>; }): DynamicModule {
         const providers = [
             {
                 provide: Telegraf,
@@ -38,7 +30,7 @@ export default class BotModule {
     }
 
 
-    public static forRoot(token: string, options?: BotOptions): DynamicModule {
+    public static forRoot(token: string, options?: TelegrafOptions): DynamicModule {
         const providers = [
             {
                 provide: Telegraf,
@@ -55,7 +47,7 @@ export default class BotModule {
         }
     }
 
-    private static async init(ref: ModuleRef, token: string, options?: BotOptions) {
+    private static async init(ref: ModuleRef, token: string, options?: TelegrafOptions) {
         const telegraf = new Telegraf(token, options);
         handlers.forEach((handler) => {
             const object: Object | undefined = ref.get(handler.class, {strict: false});
@@ -87,10 +79,6 @@ export default class BotModule {
             }
             return;
         });
-
-        await telegraf.launch(options);
         return telegraf;
     }
-
-
 }
