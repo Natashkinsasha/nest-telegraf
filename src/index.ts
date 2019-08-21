@@ -5,6 +5,6 @@ import Help from './decorator/Help';
 import Next from './decorator/Next';
 import On from './decorator/On';
 import Start from './decorator/Start';
-import BotModule from './BotModule';
+import TelegrafModule from './TelegrafModule';
 
-export {BotController, Context, Hears, Help, Next, On, Start, BotModule}
+export {BotController, Context, Hears, Help, Next, On, Start, TelegrafModule}

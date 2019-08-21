@@ -1,5 +1,3 @@
-.idea/
-node_modules/
-build/
-public/
-/.nyc_output
+.idea
+node_modules
+build

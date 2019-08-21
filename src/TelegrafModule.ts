@@ -4,7 +4,7 @@ import {ModuleRef} from "@nestjs/core";
 import {handlers, properties} from "./decorator/BotController";
 
 @Module({})
-export default class BotModule {
+export default class TelegrafModule {
 
     public static forRootAsync({useFactory, inject, imports}: { useFactory: (...args: any[]) => Promise<{ token: string, options?: TelegrafOptions, }> | { token: string, options?: TelegrafOptions, }, inject?: Array<Type<any> | string | symbol>, imports?: Array<Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference>; }): DynamicModule {
         const providers = [
@@ -23,7 +23,7 @@ export default class BotModule {
         ];
         return {
             imports,
-            module: BotModule,
+            module: TelegrafModule,
             providers: providers,
             exports: providers,
         }
@@ -41,7 +41,7 @@ export default class BotModule {
             }
         ];
         return {
-            module: BotModule,
+            module: TelegrafModule,
             providers: providers,
             exports: providers,
         }
